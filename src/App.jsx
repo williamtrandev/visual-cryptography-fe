@@ -5,6 +5,7 @@ import DraggableImage from './components/DragableImage';
 import StaticImage from './components/StaticImage';
 
 function App() {
+  const beUrl = 'https://visual-cryptography-be-3.onrender.com';
   const [imageBinary, setImageBinary] = useState('your-image-goes-here.jpg');
   const [imageBinarySubmit, setImageBinarySubmit] = useState(null);
   const [imageColor, setImageColor] = useState('your-image-goes-here.jpg');
@@ -25,7 +26,7 @@ function App() {
     const formData = new FormData();
     formData.append('image', image);
     formData.append('image_type', imageType);
-    fetch('http://localhost:8000/api/v1/encrypt', {
+    fetch(`${beUrl}/api/v1/encrypt`, {
       method: 'POST',
       body: formData,
     })
@@ -45,7 +46,7 @@ function App() {
       }); 
   }
   const getCombineImage = () => {
-    fetch('http://localhost:8000/api/v1/decrypt', {
+    fetch(`${beUrl}/api/v1/decrypt`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
